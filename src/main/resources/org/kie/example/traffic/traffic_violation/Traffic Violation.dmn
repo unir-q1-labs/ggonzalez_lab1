@@ -48,7 +48,9 @@
   </dmn:itemDefinition>
   <dmn:decision id="_05D7E499-3486-495D-859E-DC89E8CFACE5" name="Should the driver be suspended?">
     <dmn:extensionElements/>
-    <dmn:variable id="_63EFD61F-656B-4157-9A71-4B7E28EF61EF" name="Should the driver be suspended?"/>
+    <dmn:question>Should the driver be suspended?</dmn:question>
+    <dmn:allowedAnswers>Yes,No</dmn:allowedAnswers>
+    <dmn:variable id="_63EFD61F-656B-4157-9A71-4B7E28EF61EF" name="Should the driver be suspended?" typeRef="string"/>
     <dmn:informationRequirement id="_986F0BCF-833D-4275-BCCF-8E0FE1F74887">
       <dmn:requiredDecision href="#_2DA81640-2EB2-4CD9-A6F4-087EBF9B1F9E"/>
     </dmn:informationRequirement>
