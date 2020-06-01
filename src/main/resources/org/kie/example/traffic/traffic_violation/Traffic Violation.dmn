@@ -46,22 +46,33 @@
       <dmn:typeRef>number</dmn:typeRef>
     </dmn:itemComponent>
   </dmn:itemDefinition>
+  <dmn:decision id="_05D7E499-3486-495D-859E-DC89E8CFACE5" name="Should the driver be suspended?">
+    <dmn:extensionElements/>
+    <dmn:variable id="_63EFD61F-656B-4157-9A71-4B7E28EF61EF" name="Should the driver be suspended?"/>
+    <dmn:informationRequirement id="_986F0BCF-833D-4275-BCCF-8E0FE1F74887">
+      <dmn:requiredDecision href="#_2DA81640-2EB2-4CD9-A6F4-087EBF9B1F9E"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_CF0E5456-8023-4BB4-A306-B2F8A9E2A0C3">
+      <dmn:requiredInput href="#_2842F091-0BC1-49E5-B664-CCFE3EC35805"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_1A7B5C7E-748E-44C1-965D-EEE389E1AA2D">
+      <dmn:contextEntry>
+        <dmn:variable id="_310D6378-27B0-4662-9DBC-5E2F6CB76223" name="Total Points" typeRef="number"/>
+        <dmn:literalExpression id="_85234875-B36A-4215-BF25-E07FE424435E">
+          <dmn:text>Driver.Points + Fine.Points</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_4AFA9CA5-D2F8-4EF8-B565-4AAE3252AFC4">
+          <dmn:text>if Total Points >= 20 then "Yes" else "No"</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
   <dmn:inputData id="_2C66826B-0EEA-4E97-9DBC-8F8F06DD2F06" name="Violation">
     <dmn:extensionElements/>
     <dmn:variable id="_F284A7A9-9CC1-4937-A748-7CED52738532" name="Violation" typeRef="tViolation"/>
   </dmn:inputData>
-  <dmn:decision id="_83DD777B-B804-44E2-AFAF-AEF5EDC10208" name="Should the driver be suspended?">
-    <dmn:extensionElements/>
-    <dmn:question>Should the driver be suspended due to points on his driver license?</dmn:question>
-    <dmn:allowedAnswers>Yes,No</dmn:allowedAnswers>
-    <dmn:variable id="_2892521A-C9D5-465E-B4D0-CC7B86D7736A" name="Should the driver be suspended?" typeRef="string"/>
-    <dmn:informationRequirement id="_C16D3651-373C-4FDD-986A-80B660FC3F8A">
-      <dmn:requiredInput href="#_2842F091-0BC1-49E5-B664-CCFE3EC35805"/>
-    </dmn:informationRequirement>
-    <dmn:informationRequirement id="_5FD1257F-7C01-40DF-962E-8FE84837D052">
-      <dmn:requiredDecision href="#_2DA81640-2EB2-4CD9-A6F4-087EBF9B1F9E"/>
-    </dmn:informationRequirement>
-  </dmn:decision>
   <dmn:decision id="_2DA81640-2EB2-4CD9-A6F4-087EBF9B1F9E" name="Fine">
     <dmn:extensionElements/>
     <dmn:variable id="_5BD2600D-4125-47E8-ABA4-D41D44CDE0C1" name="Fine" typeRef="tFine"/>
@@ -147,6 +158,17 @@
     <dmndi:DMNDiagram>
       <di:extension>
         <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_1A7B5C7E-748E-44C1-965D-EEE389E1AA2D">
+            <kie:width>50.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>414.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_85234875-B36A-4215-BF25-E07FE424435E">
+            <kie:width>414.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4AFA9CA5-D2F8-4EF8-B565-4AAE3252AFC4">
+            <kie:width>414.0</kie:width>
+          </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_11F13139-1029-4FCE-B7FD-819C9BE18A87">
             <kie:width>50.0</kie:width>
             <kie:width>257.0</kie:width>
@@ -157,6 +179,15 @@
           </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
+      <dmndi:DMNShape id="dmnshape-_05D7E499-3486-495D-859E-DC89E8CFACE5" dmnElementRef="_05D7E499-3486-495D-859E-DC89E8CFACE5" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="203" y="54" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-_2C66826B-0EEA-4E97-9DBC-8F8F06DD2F06" dmnElementRef="_2C66826B-0EEA-4E97-9DBC-8F8F06DD2F06" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="255" green="255" blue="255"/>
@@ -184,26 +215,17 @@
         <dc:Bounds x="50" y="225" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_83DD777B-B804-44E2-AFAF-AEF5EDC10208" dmnElementRef="_83DD777B-B804-44E2-AFAF-AEF5EDC10208" isCollapsed="false">
-        <dmndi:DMNStyle>
-          <dmndi:FillColor red="255" green="255" blue="255"/>
-          <dmndi:StrokeColor red="0" green="0" blue="0"/>
-          <dmndi:FontColor red="0" green="0" blue="0"/>
-        </dmndi:DMNStyle>
-        <dc:Bounds x="137" y="50" width="100" height="50"/>
-        <dmndi:DMNLabel/>
-      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_986F0BCF-833D-4275-BCCF-8E0FE1F74887" dmnElementRef="_986F0BCF-833D-4275-BCCF-8E0FE1F74887">
+        <di:waypoint x="275" y="225"/>
+        <di:waypoint x="253" y="104"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_CF0E5456-8023-4BB4-A306-B2F8A9E2A0C3" dmnElementRef="_CF0E5456-8023-4BB4-A306-B2F8A9E2A0C3">
+        <di:waypoint x="100" y="225"/>
+        <di:waypoint x="253" y="104"/>
+      </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-_BD9C930A-B7E1-4C5C-B2C5-EC27272D165A" dmnElementRef="_BD9C930A-B7E1-4C5C-B2C5-EC27272D165A">
         <di:waypoint x="187" y="400"/>
         <di:waypoint x="275" y="275"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_C16D3651-373C-4FDD-986A-80B660FC3F8A" dmnElementRef="_C16D3651-373C-4FDD-986A-80B660FC3F8A">
-        <di:waypoint x="100" y="225"/>
-        <di:waypoint x="187" y="100"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_5FD1257F-7C01-40DF-962E-8FE84837D052" dmnElementRef="_5FD1257F-7C01-40DF-962E-8FE84837D052">
-        <di:waypoint x="275" y="225"/>
-        <di:waypoint x="187" y="100"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
